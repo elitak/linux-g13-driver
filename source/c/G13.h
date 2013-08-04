@@ -7,10 +7,12 @@
 #include "Constants.h"
 #include "G13Action.h"
 #include "Macro.h"
+#include <libusb-1.0/libusb.h>
 
 using namespace std;
 
 class G13 {
+friend class PassThroughAction;
 private:
 	G13Action            *actions[G13_NUM_KEYS];
 

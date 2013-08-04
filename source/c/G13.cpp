@@ -214,13 +214,19 @@ void G13::loadBindings() {
 					  char *keytype = strtok(NULL, ",\n ");
 					  trim(keytype);
 					  int keycode = atoi(&keytype[2]);
+					  keytype = strtok(NULL, ",\n ");
+                                          int keycode2 = 0;
+                                          if (keytype) {
+                                              keycode2 = atoi(&keytype[2]);
+                                          }
+                                          cout << "keycodes for " << gKey << " are " << keycode << " and " << keycode2 << endl;
 
 					  if (actions[gKey] != null) {
 						  delete actions[gKey];
 					  }
 
 					  //cout << "assigning G" << gKey << " to keycode " << keycode << "\n";
-					  G13Action *action = new PassThroughAction(keycode);
+					  G13Action *action = new PassThroughAction(this, keycode, keycode2);
 					  actions[gKey] = action;
 				  }
 				  else if (strcmp(type, "m") == 0) { /* macro */
